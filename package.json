@@ -1,5 +1,5 @@
 {
-  "name": "fschema",
+  "name": "@maxvu/fschema",
   "version": "0.0.1",
   "description": "Node.js validation library",
   "main": "src/index.js",
