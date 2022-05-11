@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>fschema</title>
+    <meta name="description" content="A Node.js validation library">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="fschema">
+    <meta property="og:type" content="">
+
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#fafafa">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+
+    <style type="text/css">
+        :root {
+            --bg1: #66635B;
+            --bg2: #A59E8C;
+            --bg3: #D7CEB2;
+            --ac1: #4C5760;
+            --ac2: #C5D0D3;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            width: 900px;
+            margin: auto;
+            background-color : var(--bg1);
+            overflow: auto;
+            color: #eed;
+        }
+
+        #mainNav {
+            color: #221;
+            background-color: var(--bg2);
+            position: fixed;
+            left: calc(50%-400px);
+            width: 200px;
+        }
+
+        #mainNav ul {
+            padding: 0 0 0 15px;
+        }
+
+        #mainNav li {
+            list-style-type: none;
+        }
+
+        #mainNav a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            padding: 1px 5px;
+            font-size: 100%;
+        }
+
+        #mainNav a:hover {
+            background-color: var(--bg3);
+        }
+
+        #contain {
+            margin-left: 225px;
+        }
+
+        #contain > header > h1 {
+            color: var(--ac2);
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <nav id="mainNav">
+        <ul>
+            <li><a href="#example">Quick example</a></li>
+            <li><a href="#install">Installing</a></li>
+            <li><a href="#using">Using <code>schema()</code>s</a></li>
+            <li>
+                <a href="#create">Creating <code>schema()</code>s</a>
+                <ul>
+                    <li><a href="#create-opt">Optionality</a></li>
+                    <li>
+                        <a href="#create-primitive">Primitive types</a>
+                        <ul>
+                            <li>
+                                <a href="#create-primitive-bool">
+                                    <code>bool()</code>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#create-primitive-num">
+                                    <code>num()</code>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#create-primitive-str">
+                                    <code>str()</code>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#create-primitive-fun">
+                                    <code>fun()</code>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#create-primitive-enum">
+                                    <code>enum()</code>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#create-primitive-lit">
+                                    <code>lit()</code>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#create-recursive">Recursive types</a>
+                        <ul>
+                            <li>
+                                <a href="#create-recursive-arr">
+                                    <code>arr()</code>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#create-primitive-obj">
+                                    <code>obj()</code>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#create-primitive-tup">
+                                    <code>tup()</code>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#create-primitive-sum">
+                                    <code>sum()</code>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#create-special">Special types</a>
+                        <ul>
+                            <li>
+                                <a href="#create-recursive-scm">
+                                    <code>scm()</code>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#create-primitive-none">
+                                    <code>none()</code>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#extending">Extending <code>schema()</code>s</a></li>
+        </ul>
+    </nav>
+
+    <div id="contain">
+        <header>
+            <h1>fschema</h1>
+            <span class="tagline">A Node.js validation library</span>
+        </header>
+
+        <footer>
+
+        </footer>
+    </div>
+</body>
+
+</html>
