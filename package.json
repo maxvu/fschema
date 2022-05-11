@@ -1,0 +1,23 @@
+{
+  "name": "fschema",
+  "version": "0.0.1",
+  "description": "Node.js validation library",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxvu/fschema.git"
+  },
+  "keywords": [
+    "node",
+    "schema",
+    "validation",
+    "types"
+  ],
+  "author": "Max Vu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxvu/fschema/issues"
+  },
+  "homepage": "https://github.com/maxvu/fschema#readme"
+}
