@@ -191,12 +191,11 @@
                 <h1>Introduction</h1>
             </header>
             <p><code>fschema</code> is a simple, dependency-free validation library meant to strike a balance between
-                tedious manual Javascript validation and TypeScript integration. It models a fixed number of types that
-                are normally encountered in services development and provides a straightforward mechanism for type
-                customization.</p>
-            <p>It's better suited to services
-            development than frontend, as it provides neither error message internationalization support, nor
-            exhaustive string pattern validation.</p>
+                tedious manual Javascript validation and TypeScript integration. It uses a command-function declarative
+                style, models a fixed number of types that are normally encountered in services development and provides
+                 a straightforward mechanism for type customization.</p>
+             <p>It does not provide either error message internationalization support or very complete string pattern
+                 validation, and so is better suited to services development than frontend.</p>
             <p></p>
             <footer></footer>
         </section>
@@ -245,15 +244,76 @@
                 <h2>Primitive Types</h2>
                 <div class="subsection" id="bool">
                     <h3><code>bool()</code></h3>
+                    <pre><code class="hljs javascript">fschema.bool()</code></pre>
+                    <p>Accepts <code>true</code> and <code>false</code>.</p>
                 </div>
-                <p></p>
+                <div class="subsection" id="num">
+                    <h3><code>num()</code></h3>
+                        <pre><code class="hljs javascript">fschema.num()                     <span class="hljs-comment">// any number, including NaN</span><br />fschema.num().fin()               <span class="hljs-comment">// any number but Infinity, -Infinity and NaN</span><br />fschema.num().int()               <span class="hljs-comment">// any safe integer</span><br />fschema.num().min( <span class="hljs-number">1</span> ).max( <span class="hljs-number">10</span> )  <span class="hljs-comment">// any real in [1,10], inclusive</span><br />fschema.num().nat()               <span class="hljs-comment">// any safe, positive integer</span></code></pre>
+                    <p></p>
+                </div>
+                <div class="subsection" id="str">
+                    <h3><code>str()</code></h3>
+                        <pre><code class="hljs javascript">fschema.str()                    <span class="hljs-comment">// any string</span><br />fschema.str().min( <span class="hljs-number">1</span> ).max( <span class="hljs-number">10</span> ) <span class="hljs-comment">// any string, length [1-10] inclusive</span><br />fschema.str().len( <span class="hljs-number">5</span> )           <span class="hljs-comment">// any string, length 5</span><br />fschema.str().pat( <span class="hljs-regexp">/hi/</span> )        <span class="hljs-comment">// any string matching pattern</span><br />fschema.str().ascii()            <span class="hljs-comment">// any printable ASCII string</span><br />fschema.str().slug()             <span class="hljs-comment">// e.g. "example-slug"</span><br />fschema.str().date8601()         <span class="hljs-comment">// e.g. "2006-10-21"</span><br />fschema.str().ipv4()             <span class="hljs-comment">// e.g. "192.168.1.100"</span><br />fschema.str().ipv6()             <span class="hljs-comment">// e.g. "2001:db8::abcd"</span><br />fschema.str().url()              <span class="hljs-comment">// e.g. "scheme://!$&amp;'()*+,;=hello!:1/path"</span></code></pre>
+                    <p></p>
+                </div>
+                <div class="subsection" id="fun">
+                    <h3><code>fun()</code></h3>
+                        <pre><code class="hljs javascript">fschema.fun()<br />fschema.fun().min( <span class="hljs-number">1</span> ).max( <span class="hljs-number">2</span> )<br />fschema.fun().len( <span class="hljs-number">3</span> )</code></pre>
+                    <p></p>
+                </div>
+                <div class="subsection" id="enum">
+                    <h3><code>enum()</code></h3>
+                        <pre><code class="hljs javascript">fschema.enum( <span class="hljs-string">'pending'</span>, <span class="hljs-string">'processing'</span>, <span class="hljs-string">'finished'</span> )<br />fschema.enum( ROLES.admin, ROLES.audit )<br />fschema.enum( ...flavors )</code></pre>
+                    <p></p>
+                </div>
+                <div class="subsection" id="lit">
+                    <h3><code>lit()</code></h3>
+                        <pre><code class="hljs javascript">fschema.lit( <span class="hljs-number">42</span> )<br />fschema.lit( <span class="hljs-literal">true</span> )</code></pre>
+                    <p></p>
+                </div>
             </div>
             </section>
 
             <h2>Recursive Types</h2>
             <p></p>
+
+            <div class="subsection" id="arr">
+                <h3><code>arr()</code></h3>
+
+                <p></p>
+            </div>
+
+            <div class="subsection" id="obj">
+                <h3><code>obj()</code></h3>
+
+                <p></p>
+            </div>
+
+            <div class="subsection" id="tup">
+                <h3><code>tup()</code></h3>
+
+                <p></p>
+            </div>
+
+            <div class="subsection" id="sum">
+                <h3><code>sum()</code></h3>
+
+                <p></p>
+            </div>
             <h2>Special Types</h2>
             <p></p>
+            <div class="subsection" id="scm">
+                <h3><code>scm()</code></h3>
+
+                <p></p>
+            </div>
+
+            <div class="subsection" id="none">
+                <h3><code>none()</code></h3>
+
+                <p></p>
+            </div>
             <footer></footer>
         </section>
 
