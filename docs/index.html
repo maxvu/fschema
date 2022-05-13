@@ -6,10 +6,6 @@
     <meta name="description" content="A Node.js validation library">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:title" content="fschema">
-    <meta property="og:type" content="">
-
-    <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#fafafa">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,11 +17,10 @@
 
     <style type="text/css">
         :root {
-            --bg1: #66635B;
-            --bg2: #A59E8C;
-            --bg3: #D7CEB2;
-            --ac1: #4C5760;
-            --ac2: #C5D0D3;
+            --bg1: #1A3C40;
+            --bg2: #1D5C63;
+            --bg3: #417D7A;
+            --fg1: #EDE6DB;
         }
 
         body {
@@ -38,11 +33,12 @@
         }
 
         #mainNav {
-            color: #221;
+            color: inherit;
             background-color: var(--bg2);
             position: fixed;
             left: calc(50%-400px);
             width: 200px;
+            height: 100%;
         }
 
         #mainNav ul {
@@ -72,7 +68,21 @@
         #contain > header > h1 {
             color: var(--ac2);
         }
-    </style>
+
+        #contain section, #contain .subsection {
+            padding-top: 75px;
+        }
+
+        /*!
+          Theme: Gruvbox dark, medium
+          Author: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
+          License: ~ MIT (or more permissive) [via base16-schemes-source]
+          Maintainer: @highlightjs/core-team
+          Version: 2021.09.0
+        */
+        pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#d5c4a1;background:#282828}.hljs ::selection,.hljs::selection{background-color:#504945;color:#d5c4a1}.hljs-comment{color:#665c54}.hljs-tag{color:#bdae93}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#d5c4a1}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#fb4934}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#fe8019}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#fabd2f}.hljs-strong{font-weight:700;color:#fabd2f}.hljs-addition,.hljs-code,.hljs-string,.hljs-title.class_.inherited__{color:#b8bb26}.hljs-built_in,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp{color:#8ec07c}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#83a598}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#d3869b}.hljs-emphasis{color:#d3869b;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#d65d0e}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}
+
+        </style>
 
 
 </head>
@@ -80,43 +90,42 @@
 <body>
     <nav id="mainNav">
         <ul>
+            <li><a href="#introduction">Introduction</a></li>
             <li><a href="#example">Quick example</a></li>
-            <li><a href="#install">Installing</a></li>
-            <li><a href="#using">Using <code>schema()</code>s</a></li>
+            <li><a href="#installation">Installing</a></li>
             <li>
-                <a href="#create">Creating <code>schema()</code>s</a>
+                <a href="#creating-schemas">Creating schemas</a>
                 <ul>
-                    <li><a href="#create-opt">Optionality</a></li>
                     <li>
-                        <a href="#create-primitive">Primitive types</a>
+                        <a href="#primitive-types">Primitive types</a>
                         <ul>
                             <li>
-                                <a href="#create-primitive-bool">
+                                <a href="#bool">
                                     <code>bool()</code>
                                 </a>
                             </li>
                             <li>
-                                <a href="#create-primitive-num">
+                                <a href="#num">
                                     <code>num()</code>
                                 </a>
                             </li>
                             <li>
-                                <a href="#create-primitive-str">
+                                <a href="#str">
                                     <code>str()</code>
                                 </a>
                             </li>
                             <li>
-                                <a href="#create-primitive-fun">
+                                <a href="#fun">
                                     <code>fun()</code>
                                 </a>
                             </li>
                             <li>
-                                <a href="#create-primitive-enum">
+                                <a href="#enum">
                                     <code>enum()</code>
                                 </a>
                             </li>
                             <li>
-                                <a href="#create-primitive-lit">
+                                <a href="#lit">
                                     <code>lit()</code>
                                 </a>
                             </li>
@@ -127,22 +136,22 @@
                         <a href="#create-recursive">Recursive types</a>
                         <ul>
                             <li>
-                                <a href="#create-recursive-arr">
+                                <a href="#arr">
                                     <code>arr()</code>
                                 </a>
                             </li>
                             <li>
-                                <a href="#create-primitive-obj">
+                                <a href="#obj">
                                     <code>obj()</code>
                                 </a>
                             </li>
                             <li>
-                                <a href="#create-primitive-tup">
+                                <a href="#tup">
                                     <code>tup()</code>
                                 </a>
                             </li>
                             <li>
-                                <a href="#create-primitive-sum">
+                                <a href="#sum">
                                     <code>sum()</code>
                                 </a>
                             </li>
@@ -153,12 +162,12 @@
                         <a href="#create-special">Special types</a>
                         <ul>
                             <li>
-                                <a href="#create-recursive-scm">
+                                <a href="#scm">
                                     <code>scm()</code>
                                 </a>
                             </li>
                             <li>
-                                <a href="#create-primitive-none">
+                                <a href="#none">
                                     <code>none()</code>
                                 </a>
                             </li>
@@ -166,7 +175,8 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="#extending">Extending <code>schema()</code>s</a></li>
+            <li><a href="#using">Using schemas</a></li>
+            <li><a href="#extending">Extending schemas</a></li>
         </ul>
     </nav>
 
@@ -175,6 +185,85 @@
             <h1>fschema</h1>
             <span class="tagline">A Node.js validation library</span>
         </header>
+
+        <section id="introduction">
+            <header>
+                <h1>Introduction</h1>
+            </header>
+            <p><code>fschema</code> is a simple, dependency-free validation library meant to strike a balance between
+                tedious manual Javascript validation and TypeScript integration. It models a fixed number of types that
+                are normally encountered in services development and provides a straightforward mechanism for type
+                customization.</p>
+            <p>It's better suited to services
+            development than frontend, as it provides neither error message internationalization support, nor
+            exhaustive string pattern validation.</p>
+            <p></p>
+            <footer></footer>
+        </section>
+
+        <section id="example">
+            <header>
+                <h1>Quick example</h1>
+            </header>
+            <code class="code-sample">
+                <pre><code class="hljs javascript"><span class="hljs-meta">'use strict'</span><br /><span class="hljs-keyword">const</span> fschema = <span class="hljs-built_in">require</span>( <span class="hljs-string">'./index'</span> )<br /><br /><span class="hljs-comment">// Create a schema of an object that has properties `x` and `y`.</span><br /><span class="hljs-keyword">const</span> point2d = fschema.obj({<br />    <span class="hljs-attr">x</span> : <span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> _.num().fin(),<br />    <span class="hljs-attr">y</span> : <span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> _.num().fin()<br />})<br /><br /><span class="hljs-comment">// Define two values to validate.</span><br /><span class="hljs-keyword">const</span> p1 = { <span class="hljs-attr">x</span> : <span class="hljs-string">'0'</span>, <span class="hljs-attr">y</span> : <span class="hljs-literal">Infinity</span> }<br /><span class="hljs-keyword">const</span> p2 = <span class="hljs-literal">null</span><br /><br /><span class="hljs-comment">// ok() indicates whether the value satisfies the schema.</span><br />point2d.apply( p1, <span class="hljs-string">'origin'</span> ).ok() <span class="hljs-comment">// false</span><br /><br /><span class="hljs-comment">// apply() details which errors occured where, along with descriptions.</span><br />point2d.apply( p1, <span class="hljs-string">'origin'</span> ).errors.map( <span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> _.message )<br />    <span class="hljs-comment">// [ "origin.x must be a primitive number", "origin.y must be finite" ]</span><br /><br /><span class="hljs-comment">// assert() throws on failure.</span><br />point2d.assert( p2, <span class="hljs-string">'p2'</span> )<br /><span class="hljs-comment">/*<br />Error: p2 must be present<br />    at SchemaValidation.as_error (/app/fschema/src/validation.js:50:21)<br />    at ObjectSchema.assert (/app/fschema/src/schema.js:62:30)<br />    at Object.&lt;anonymous&gt; (/app/demo.js:15:9)<br />    ...<br />*/</span></code></pre>
+            </code>
+            <p></p>
+            <p></p>
+            <p></p>
+            <footer></footer>
+        </section>
+
+        <section id="installation">
+            <header>
+                <h1>Installing</h1>
+            </header>
+            <pre><code class="hljs bash">$ npm install @maxvu/fschema</code></pre>
+            <p></p>
+            <p></p>
+            <p></p>
+            <footer></footer>
+        </section>
+
+        <section id="creating-schemas">
+            <header>
+                <h1>Creating schemas</h1>
+            </header>
+            <p>Create schemas by using the exported factory function and add additional refinements by method chaining:</p>
+                <pre><code class="hljs javascript"><span class="hljs-comment">// any value, optional</span><br /><span class="hljs-keyword">const</span> any_value = fschema().opt()<br /><br /><span class="hljs-comment">// safe integers &gt;= 0</span><br /><span class="hljs-keyword">let</span> user_id = fschema.num().nat()<br /><br /><span class="hljs-comment">// object, with subschemas applied to certain properties</span><br /><span class="hljs-keyword">let</span> post = fschema.obj({<br />    <span class="hljs-attr">author</span>  : user_id,<br />    <span class="hljs-attr">title</span>   : <span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> _.str(),<br />    <span class="hljs-attr">deleted</span> : <span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> _.bool()<br />})<br /></code></pre>
+            <p>A schema is create bare and, without any refinements will accept any "present" value: one that is neither
+                <code>null</code> nor <code>undefined</code>. Chaining <code>opt()</code> ("optional") will accept those values. </p>
+            <p>The main exported function exposes properties for each type named in this guide, which can also
+                be accessed through a builder function argument that will be passed a bare schema. This style is particularly
+                handy when defining recursive schemas: it offers shorter syntax by removing the need to name the imported
+                module for each property.</p>
+            <p>When the main exported function receives a schema as an argument, it will return the same value - not a copy.
+                In order to avoid mistakenly applying refinements to multiply-referenced types, consider capturing their construction
+                in a function:</p>
+                <pre><code class="hljs javascript"><span class="hljs-keyword">const</span> account_id = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> fschema.num().nat()<br /><span class="hljs-keyword">const</span> transaction = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> fschema.obj({<br />    <span class="hljs-attr">from</span>   : account_id(),<br />    <span class="hljs-attr">to</span>     : account_id(),<br />    <span class="hljs-attr">amount</span> : <span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> _.num().min( <span class="hljs-number">0</span> ).fin()<br />})</code></pre>
+            <div class="subsection" id="primitive-types">
+                <h2>Primitive Types</h2>
+                <div class="subsection" id="bool">
+                    <h3><code>bool()</code></h3>
+                </div>
+                <p></p>
+            </div>
+            </section>
+
+            <h2>Recursive Types</h2>
+            <p></p>
+            <h2>Special Types</h2>
+            <p></p>
+            <footer></footer>
+        </section>
+
+        <section>
+            <header>
+                <h1>Extending schemas</h1>
+            </header>
+            <p></p>
+            <footer></footer>
+        </section>
 
         <footer>
 
