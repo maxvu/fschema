@@ -4,7 +4,7 @@
   "description": "Node.js validation library",
   "main": "src/index.js",
   "scripts": {
-      "test": "mocha --fail-zero -p -c --extension test.js --r tests/index.js --recursive tests/",
+      "test": "mocha --fail-zero -p -c --extension test.js --r test/harness.js --recursive src/",
       "coverage": "nyc --reporter=html yarnpkg run test"
   },
   "repository": {
