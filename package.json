@@ -1,30 +1,27 @@
 {
   "name": "@maxvu/fschema",
-  "version": "0.0.1",
-  "description": "Node.js validation library",
-  "main": "src/index.js",
+  "version": "0.1.0",
+  "description": "value validation",
+  "main": "index.js",
   "scripts": {
-      "test": "mocha --fail-zero -p -c --extension test.js --r test/harness.js --recursive src/",
-      "coverage": "nyc --reporter=html yarnpkg run test"
+    "test": "node --test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/maxvu/fschema.git"
   },
   "keywords": [
-    "node",
     "schema",
     "validation",
-    "types"
+    "types",
+    "typing",
+    "fschema"
   ],
+  "type": "module",
   "author": "Max Vu",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/maxvu/fschema/issues"
   },
-  "homepage": "https://github.com/maxvu/fschema#readme",
-  "devDependencies": {
-    "mocha": "^10.0.0",
-    "nyc": "^15.1.0"
-  }
+  "homepage": "https://github.com/maxvu/fschema#readme"
 }
